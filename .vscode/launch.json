@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/remove-adjacent-duplicates-in-string.js"
+      "program": "${workspaceFolder}/max-consectuve-ones.js"
     },
     {
       "type": "node-terminal",
