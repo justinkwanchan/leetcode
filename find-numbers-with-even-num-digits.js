@@ -25,16 +25,20 @@
  * @param {number[]} nums
  * @return {number}
  */
+// var findNumbers = function (nums) {
+//   let count = 0;
+
+//   nums.forEach(num => {
+//     if ((Math.floor(Math.log10(num)) + 1) % 2 === 0) {
+//       count++;
+//     }
+//   });
+
+//   return count;
+// };
+
 var findNumbers = function (nums) {
-  let count = 0;
-
-  nums.forEach(num => {
-    if ((Math.floor(Math.log10(num)) + 1) % 2 === 0) {
-      count++;
-    }
-  });
-
-  return count;
+  return nums.filter(num => [...String(num)].length % 2 === 0).length;
 };
 
-console.log(findNumbers([555, 901, 482, 1771]));
+console.log(findNumbers([555, 901, 482, 1771, 10]));
