@@ -21,8 +21,7 @@
  * @return {void} Do not return anything, modify arr in-place instead.
  */
 var duplicateZeros = function (arr) {
-  // const zeros = arr.map((num, i) => num === 0 && i).filter(num => num);
-  const numZeros = arr.reduce((numZeros, num, i) => {
+  const numZeros = arr.reduce((numZeros, num) => {
     if (num === 0) {
       numZeros++;
     }
@@ -30,35 +29,20 @@ var duplicateZeros = function (arr) {
     return numZeros;
   }, 0);
 
-  let overflow = [];
   for (
     let i = arr.length - 1, j = arr.length + numZeros - 1;
     i > -1;
     i--, j--
   ) {
-    while (overflow.length < numZeros) {
-      if (arr[i] === 0) {
-        overflow.push(0);
-        j--;
-      }
-
-      overflow.push(arr[i]);
-      i--;
-
-      if (overflow.length <= numZeros) {
-        j--;
-      } else {
-        arr[j] = overflow.pop();
-        j--;
-      }
-    }
-
     if (arr[i] === 0) {
-      arr[j] = 0;
+      if (j < arr.length) {
+        arr[j] = 0;
+      }
+
       j--;
     }
 
-    if (j >= 0) {
+    if (j >= 0 && j < arr.length) {
       arr[j] = arr[i];
     }
   }
@@ -66,4 +50,4 @@ var duplicateZeros = function (arr) {
   return arr;
 };
 
-console.log(duplicateZeros([1, 0, 0, 2, 3, 0, 0, 4]));
+console.log(duplicateZeros([1, 0, 2, 3, 0, 4, 5, 0]));
