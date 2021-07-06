@@ -29,7 +29,7 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  const numSet = [];
+  const numSet = {};
 
   for (const i in nums) {
     const complement = target - nums[i];
