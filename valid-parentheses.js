@@ -47,11 +47,7 @@ var isValid = function (s) {
     }
   }
 
-  if (parenStack.length !== 0) {
-    return false;
-  }
-
-  return true;
+  return parenStack.length === 0;
 };
 
-console.log(isValid('({[{}]}'));
+console.log(isValid('{[{}]}'));
