@@ -32,17 +32,36 @@
  * @return {boolean}
  */
 var isValid = function (s) {
+  // const parenStack = [];
+  // const parentheses = ['(', '[', '{', ')', ']', '}'];
+
+  // for (const paren of s) {
+  //   if (parentheses.indexOf(paren) < 3) {
+  //     parenStack.push(paren);
+  //     continue;
+  //   }
+
+  //   const popped = parenStack.pop();
+  //   if (parentheses.indexOf(popped) + 3 !== parentheses.indexOf(paren)) {
+  //     return false;
+  //   }
+  // }
+
+  // return parenStack.length === 0;
   const parenStack = [];
-  const parentheses = ['(', '[', '{', ')', ']', '}'];
+  const parentheses = {
+    ')': '(',
+    ']': '[',
+    '}': '{',
+  };
 
   for (const paren of s) {
-    if (parenStack.length === 0 || parentheses.indexOf(paren) < 3) {
+    if (!parentheses[paren]) {
       parenStack.push(paren);
       continue;
     }
 
-    const popped = parenStack.pop();
-    if (parentheses.indexOf(popped) + 3 !== parentheses.indexOf(paren)) {
+    if (parenStack.pop() !== parentheses[paren]) {
       return false;
     }
   }
