@@ -31,39 +31,69 @@
  */
 
 var mergeTwoLists = function (l1, l2) {
-  if (!l1 && !l2) {
-    return l1;
-  }
+  // if (!l1 && !l2) {
+  //   return l1;
+  // }
 
-  let head;
-  let current1;
-  let current2;
+  // let head;
+  // let current1;
+  // let current2;
 
-  if (l1 && l1.val <= (l2 ? l2.val : l1.val)) {
-    head = l1;
-    current1 = head.next;
-    current2 = l2;
-  } else {
-    head = l2;
-    current1 = l1;
-    current2 = head.next;
-  }
+  // if (l1 && l1.val <= (l2 ? l2.val : l1.val)) {
+  //   head = l1;
+  //   current1 = head.next;
+  //   current2 = l2;
+  // } else {
+  //   head = l2;
+  //   current1 = l1;
+  //   current2 = head.next;
+  // }
 
-  let prev = head;
+  // let prev = head;
 
-  while (current1 || current2) {
-    if (current1 && current1.val <= (current2 ? current2.val : current1.val)) {
-      prev.next = current1;
-      prev = current1;
-      current1 = current1.next;
+  // while (current1 || current2) {
+  //   if (current1 && current1.val <= (current2 ? current2.val : current1.val)) {
+  //     prev.next = current1;
+  //     prev = current1;
+  //     current1 = current1.next;
+  //   } else {
+  //     prev.next = current2;
+  //     prev = current2;
+  //     current2 = current2.next;
+  //   }
+  // }
+
+  // return head;
+
+  const head = new ListNode();
+  let current = head;
+
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      current.next = l1;
+      current = l1;
+      l1 = l1.next;
     } else {
-      prev.next = current2;
-      prev = current2;
-      current2 = current2.next;
+      current.next = l2;
+      current = l2;
+      l2 = l2.next;
     }
+    console.log(head.next);
   }
 
-  return head;
+  while (l1) {
+    current.next = l1;
+    current = l1;
+    l1 = l1.next;
+  }
+
+  while (l2) {
+    current.next = l2;
+    current = l2;
+    l2 = l2.next;
+  }
+
+  return head.next;
 };
 
 class ListNode {
@@ -84,7 +114,7 @@ const l2a = new ListNode(1, l2b);
 
 mergeTwoLists(l1a, l2a);
 
-let current = l2a;
+let current = l1a;
 while (current) {
   console.log(current.val);
   current = current.next;
