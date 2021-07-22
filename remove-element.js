@@ -27,23 +27,46 @@
  * @return {number}
  */
 var removeElement = function (nums, val) {
-  let instances = 0;
+  // let instances = 0;
+  // const numLength = nums.length;
+
+  // for (let i = 0; i < numLength; i++) {
+  //   if (nums[i] === val) {
+  //     instances++;
+  //     continue;
+  //   }
+
+  //   nums[i - instances] = nums[i];
+  // }
+
+  // return numLength - instances;
+
+  let leftInstances = 0;
+  let rightInstances = 0;
+  let replacements = 0;
   const numLength = nums.length;
 
-  for (let i = 0; i < numLength; i++) {
+  for (let i = 0; i < numLength - leftInstances - rightInstances; i++) {
     if (nums[i] === val) {
-      instances++;
-      continue;
-    }
+      leftInstances++;
 
-    nums[i - instances] = nums[i];
+      for (let j = numLength - 1 - rightInstances - replacements; j > i; j--) {
+        if (nums[j] !== val) {
+          nums[i] = nums[j];
+          replacements++;
+          break;
+        }
+
+        rightInstances++;
+      }
+    }
   }
 
-  return numLength - instances;
+  return numLength - leftInstances - rightInstances;
 };
 
 // [2,2,3,4,5,2,2,2,6,7,2,8,2,2,2,2]
 
-const arr = [0, 1, 2, 2, 3, 0, 4, 2];
+const arr = [2, 2, 3, 4, 5, 2, 2, 2, 6, 7, 2, 8, 2, 2, 2, 2];
 console.log(removeElement(arr, 2));
 console.log(arr);
