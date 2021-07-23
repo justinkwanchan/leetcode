@@ -29,11 +29,13 @@
 var strStr = function (haystack, needle) {
   if (needle === '') return 0;
 
-  for (let i = 0; i < haystack.length; i++) {
+  const needleLength = needle.length;
+
+  for (let i = 0; i < haystack.length - needleLength + 1; i++) {
     if (haystack[i] === needle[0]) {
       let j = 0;
 
-      while (j < needle.length) {
+      while (j < needleLength) {
         if (haystack[i] !== needle[j]) {
           i = i - j;
           break;
@@ -43,7 +45,7 @@ var strStr = function (haystack, needle) {
         j++;
       }
 
-      if (j === needle.length) {
+      if (j === needleLength) {
         return i - j;
       }
     }
