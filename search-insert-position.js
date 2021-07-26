@@ -38,24 +38,21 @@ var searchInsert = function (nums, target) {
 
   while (low <= high) {
     const halfwayIndex = Math.floor((high - low + 1) / 2) + low;
+    const halfwayElement = nums[halfwayIndex];
     const beforeHalfway = nums[halfwayIndex - 1];
 
-    if (nums[halfwayIndex] === target) {
-      return halfwayIndex;
-    }
-
     if (
-      nums[halfwayIndex] > target &&
-      (!beforeHalfway || beforeHalfway < target)
+      halfwayElement === target ||
+      (halfwayElement > target && (!beforeHalfway || beforeHalfway < target))
     ) {
       return halfwayIndex;
     }
 
-    if (nums[halfwayIndex] < target && !nums[halfwayIndex + 1]) {
+    if (halfwayElement < target && !nums[halfwayIndex + 1]) {
       return halfwayIndex + 1;
     }
 
-    if (nums[halfwayIndex] > target) {
+    if (halfwayElement > target) {
       high = halfwayIndex - 1;
       continue;
     }
