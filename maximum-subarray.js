@@ -29,11 +29,7 @@ var maxSubArray = function (nums) {
   let currentSum = 0;
 
   for (const num of nums) {
-    if (currentSum < 0) {
-      currentSum = 0;
-    }
-
-    currentSum += num;
+    currentSum = Math.max(currentSum + num, num);
     maxSub = Math.max(maxSub, currentSum);
   }
 
