@@ -18,6 +18,6 @@
  * @return {number}
  */
 var lengthOfLastWord = function (s) {
-  const sArray = s.split(' ');
+  const sArray = s.trim().split(' ');
   return sArray[sArray.length - 1] ? sArray[sArray.length - 1].length : 0;
 };
